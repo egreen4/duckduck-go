@@ -15,7 +15,7 @@ public class DuckDuckGo extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Load the root UI FXML file from a path relative to the root directory.
-        var root = FXMLLoader.load(Paths.get("./src/main/java/edu/unca/csci/duckduck_go.fxml").toUri().toURL());
+        var root = FXMLLoader.load(Paths.get("./src/main/resources/fxml/duckduck_go.fxml").toUri().toURL());
 
         // Set the title and size of the new window.
         primaryStage.setTitle("DuckDuckGo");
