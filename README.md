@@ -3,7 +3,10 @@ A model-view-controller project addition to our duck series.
 
 ## Running duckduck-go:
 ```git
-pull indev-mvn
+git clone https://github.com/egreen4/duckduck-go
+cd duckduck-go
+
+pull indev
 make run
 ```
 
