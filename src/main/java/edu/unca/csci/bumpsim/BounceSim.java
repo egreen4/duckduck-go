@@ -1,4 +1,4 @@
-package edu.unca.csci;
+package edu.unca.csci.bumpsim;
 
 public class BounceSim {
     private final double paneWidth;
@@ -7,8 +7,11 @@ public class BounceSim {
     private final double entityWidth;
     private final double entityHeight;
 
-    private double entitySpeed;
-    private double entityDirection;
+    private double horizontalSpeed;
+    private double verticalSpeed;
+
+    private double xCoordinate;
+    private double yCoordinate;
 
     public BounceSim(double paneWidth, double paneHeight, double entityWidth, double entityHeight, double decayRate) {
         this.paneWidth = paneWidth;
@@ -16,15 +19,16 @@ public class BounceSim {
 
         this.entityHeight = entityHeight;
         this.entityWidth = entityWidth;
-
-        this.entitySpeed = 0;
-        this.entityDirection = 0;
     }
 
-    public void bump(double direction, double speed) {
+    public void bump(HorizontalVelocity horizontalVelocity, VerticalVelocity verticalVelocity) {
     }
 
-    public Position moveNext() {
+    public Position nextPosition() {
         return null;
+    }
+
+    private CollisionType checkCollision() {
+        return CollisionType.NotCollided;
     }
 }

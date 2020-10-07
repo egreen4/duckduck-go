@@ -1,4 +1,4 @@
-package edu.unca.csci;
+package edu.unca.csci.bumpsim;
 
 public class Position {
     public double xCoordinate;

@@ -28,7 +28,6 @@ public class AnimationPanel extends JPanel
 
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(Color.black);
-		
 	}
 	
 	public void start() {
