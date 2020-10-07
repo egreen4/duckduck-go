@@ -1,11 +1,11 @@
 # duckduck-go
 A model-view-controller project addition to our duck series. 
-## Usage
+
+## Running duckduck-go:
 ```git
 pull indev-mvn
-
-mvn compile
+make run
 ```
-Go to VSCode and press f5 to run it!
+
 ## Fun Part
-Once it has loaded press 'Quack' and have the time of your life watching the duck bounce around
+Once it has loaded press 'Quack' and have the time of your life watching the duck bounce around.
