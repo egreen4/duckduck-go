@@ -1,5 +1,8 @@
 package edu.unca.csci.bumpsim;
 
+/**
+ * BounceSim is a 'physics' simulation of an entity in a determined pane size.
+ */
 public class BounceSim {
     private final double paneWidth;
     private final double paneHeight;
@@ -34,11 +37,20 @@ public class BounceSim {
         this.yCoordinate = yStart;
     }
 
+    /**
+     * Will 'bump' the entity into a new horizontal and vertical velocity.
+     * @param horizontalVelocity
+     * @param verticalVelocity
+     */
     public void bump(HorizontalVelocity horizontalVelocity, VerticalVelocity verticalVelocity) {
         horizontalSpeed = horizontalVelocity.speed * (horizontalVelocity.direction == HorizontalDirection.Right ? 1 : -1);
         verticalSpeed = verticalVelocity.speed * (verticalVelocity.direction == VerticalDirection.Up ? -1 : 1);
     }
 
+    /**
+     * Computes and returns the next position of the entity in the simulation.
+     * @return A position object with the next X/Y coordinates of the entity.
+     */
     public Position nextPosition() {
         // Reduce the vertical speed by the decay rate.
         verticalSpeed += decayRate;
@@ -87,6 +99,10 @@ public class BounceSim {
         return new Position(xCoordinate, yCoordinate);
     }
 
+    /**
+     * Determines if the entity has collided, and if so, where. 
+     * @return A CollisionType enum.
+     */
     private CollisionType checkCollision() {
         if (xCoordinate <= 0 || xCoordinate >= paneWidth - entityWidth) {
             return CollisionType.Wall;
