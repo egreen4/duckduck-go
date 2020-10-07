@@ -33,6 +33,16 @@ public class Controller implements ActionListener {
 		//String input = (String) e.getActionCommand();
 		//System.out.println(input);
 		
+		 try {
+	       		 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("quack.wav").getAbsoluteFile());
+	       		 Clip clip = AudioSystem.getClip();
+	       		 clip.open(audioInputStream);
+	       		 clip.start();
+	   	 } catch(Exception ex) {
+	       		 System.out.println("Error with playing sound.");
+	       		 ex.printStackTrace();
+	   	 }
+		
 		if(state == -1) {
 		
 			state *= -1;
