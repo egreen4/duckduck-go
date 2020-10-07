@@ -24,18 +24,18 @@ public class BounceSim {
 
         this.decayRate = decayRate;
 
-        this.xCoordinate = Math.floor(entityWidth / 2);
-        this.yCoordinate = Math.floor(entityHeight / 2);
+        this.xCoordinate = Math.floor(paneWidth / 2);
+        this.yCoordinate = Math.floor(paneHeight / 2);
     }
 
     public void bump(HorizontalVelocity horizontalVelocity, VerticalVelocity verticalVelocity) {
         horizontalSpeed = horizontalVelocity.speed * (horizontalVelocity.direction == HorizontalDirection.Right ? 1 : -1);
-        verticalSpeed = verticalVelocity.speed * (verticalVelocity.direction == VerticalDirection.Up ? 1 : -1);
+        verticalSpeed = verticalVelocity.speed * (verticalVelocity.direction == VerticalDirection.Up ? -1 : 1);
     }
 
     public Position nextPosition() {
         // Reduce the vertical speed by the decay rate.
-        verticalSpeed -= decayRate;
+        verticalSpeed += decayRate;
 
         xCoordinate += horizontalSpeed;
         yCoordinate += verticalSpeed;
@@ -50,6 +50,16 @@ public class BounceSim {
         // If there was a collision with either wall.
         else if (collision == CollisionType.Wall) {
             horizontalSpeed = -horizontalSpeed;
+        }
+
+        // If the vertical velocity is very close to 0, set it to 0.
+        if (Math.abs(verticalSpeed) <= .5) {
+            verticalSpeed = 0;
+        }
+
+        // If the vertical speed is 0, reduce the horizontal speed ("friction").
+        if (verticalSpeed == 0) {
+            horizontalSpeed -= 1;
         }
 
         return new Position(xCoordinate, yCoordinate);

@@ -61,7 +61,7 @@ public class Model
 	 * Starts Animation
 	 */
 	public void start() {
-		bounceSim.bump(new HorizontalVelocity(HorizontalDirection.Right, 5), new VerticalVelocity(VerticalDirection.Up, 5));
+		bounceSim.bump(new HorizontalVelocity(HorizontalDirection.Right, 1), new VerticalVelocity(VerticalDirection.Up, 1));
 		timer.start();
 	}
 	
