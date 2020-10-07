@@ -4,14 +4,23 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import edu.unca.csci.bumpsim.BounceSim;
+import edu.unca.csci.bumpsim.HorizontalDirection;
+import edu.unca.csci.bumpsim.HorizontalVelocity;
+import edu.unca.csci.bumpsim.VerticalDirection;
+import edu.unca.csci.bumpsim.VerticalVelocity;
+
 public class AnimationPanel extends JPanel
 {
 	private final int WIDTH = 600, HEIGHT = 600;
 	private final int DELAY = 20, IMAGE_SIZE = 60;
+	private final double DECAY_RATE = 8;
 
 	private ImageIcon image;
 	private Timer timer;
 	private int x, y, moveX, moveY;
+
+	private BounceSim bounceSim;
 
 	//-----------------------------------------------------------------
 	//  Sets up the panel, including the timer for the animation.
@@ -28,12 +37,13 @@ public class AnimationPanel extends JPanel
 
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(Color.black);
+
+		bounceSim = new BounceSim(WIDTH, HEIGHT, IMAGE_SIZE, IMAGE_SIZE, DECAY_RATE);
 	}
 	
 	public void start() {
-		
+		bounceSim.bump(new HorizontalVelocity(HorizontalDirection.Right, 10), new VerticalVelocity(VerticalDirection.Up, 10));
 		timer.start();
-		
 	}
 	
 	public void stop() {
@@ -62,14 +72,18 @@ public class AnimationPanel extends JPanel
 		//--------------------------------------------------------------
 		public void actionPerformed(ActionEvent event)
 		{
-			x += moveX;
-			y += moveY;
+			var position = bounceSim.nextPosition();
+			x = (int)position.xCoordinate;
+			y = (int)position.yCoordinate;
 
-			if (x <= 0 || x >= WIDTH-IMAGE_SIZE)
-				moveX = moveX * -1;
+			// x += moveX;
+			// y += moveY;
 
-			if (y <= 0 || y >= HEIGHT-IMAGE_SIZE)
-				moveY = moveY * -1;
+			// if (x <= 0 || x >= WIDTH-IMAGE_SIZE)
+				// moveX = moveX * -1;
+
+			// if (y <= 0 || y >= HEIGHT-IMAGE_SIZE)
+				// moveY = moveY * -1;
 
 			repaint();
 		}
