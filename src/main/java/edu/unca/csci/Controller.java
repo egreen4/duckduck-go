@@ -2,6 +2,8 @@ package edu.unca.csci;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;
@@ -14,9 +16,8 @@ import javax.sound.sampled.Clip;
  * movement animation.
  *
  */
-public class Controller implements ActionListener {
+public class Controller implements MouseListener {
 
-	private int state = -1;
 	private Model m;
 	
 	/**
@@ -33,33 +34,45 @@ public class Controller implements ActionListener {
 	 * Detects actions from viewer class, starts or stops
 	 * code that moves Image
 	 */
-	public void actionPerformed(ActionEvent e) {
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
-		//String input = (String) e.getActionCommand();
-		//System.out.println(input);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		 try {
-	       		 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./src/main/resources/quack.wav").getAbsoluteFile());
-	       		 Clip clip = AudioSystem.getClip();
-	       		 clip.open(audioInputStream);
-	       		 clip.start();
-	   	 } catch(Exception ex) {
-	       		 System.out.println("Error with playing sound.");
-	       		 ex.printStackTrace();
-	   	 }
+       		 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./src/main/resources/quack.wav").getAbsoluteFile());
+       		 Clip clip = AudioSystem.getClip();
+       		 clip.open(audioInputStream);
+       		 clip.start();
+   	 } catch(Exception ex) {
+       		 System.out.println("Error with playing sound.");
+       		 ex.printStackTrace();
+   	 }
+	 
+	 m.start();
+	
+
 		
-		if(state == -1) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
-			state *= -1;
-			m.start();
-		
-		}
-		else if(state == 1) {
-			
-			state *= -1;
-			m.stop();
-			
-		}
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	
