@@ -74,7 +74,7 @@ public class Viewer {
 		{
 			image = new ImageIcon("./src/main/resources/duck.png");
 			setPreferredSize(new Dimension(WIDTH, HEIGHT));
-			setBackground(Color.black);
+			setBackground(Color.decode("#98BCB9"));
 			
 		}
 
