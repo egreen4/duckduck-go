@@ -5,7 +5,7 @@ public class BounceSim {
     private final double entityWidth;
     private final double entityHeight;
 
-    public BounceSim(double paneWidth, double paneHeight, double entityWidth, double entityHeight, double gravity) {
+    public BounceSim(double paneWidth, double paneHeight, double entityWidth, double entityHeight, double decayRate) {
         this.paneWidth = paneWidth;
         this.paneHeight = paneHeight;
 
@@ -13,6 +13,6 @@ public class BounceSim {
         this.entityWidth = entityWidth;
     }
 
-    public void bump(double direction, double power) {
+    public void bump(int direction, double rate) {
     }
 }
