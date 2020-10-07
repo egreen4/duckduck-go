@@ -59,7 +59,7 @@ public class BounceSim {
 
         // If the vertical speed is 0, reduce the horizontal speed ("friction").
         if (verticalSpeed == 0) {
-            horizontalSpeed += 1;
+            horizontalSpeed += (1 * (horizontalSpeed < 0 ? -1 : 1));
         }
 
         return new Position(xCoordinate, yCoordinate);
