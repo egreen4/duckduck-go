@@ -53,7 +53,7 @@ public class Viewer {
 	 * @param listener Controller class to be given control of elements within viewer
 	 */
 	public void registerListener(Controller listener) {
-	    b.addActionListener(listener);
+	    canvas.addMouseListener(listener);
 	}
 
 	/**
