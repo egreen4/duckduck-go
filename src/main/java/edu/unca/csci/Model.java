@@ -1,6 +1,5 @@
 package edu.unca.csci;
 
-import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
@@ -47,7 +46,7 @@ public class Model
 		y = 450;
 		moveX = moveY = 3;
 
-		bounceSim = new BounceSim(WIDTH, HEIGHT, IMAGE_SIZE, IMAGE_SIZE, DECAY_RATE);
+		bounceSim = new BounceSim(WIDTH, HEIGHT, IMAGE_SIZE, IMAGE_SIZE, DECAY_RATE, x, y);
 	}
 	
 	/**

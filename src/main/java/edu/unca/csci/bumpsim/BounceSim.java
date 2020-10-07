@@ -18,7 +18,7 @@ public class BounceSim {
     private double xCoordinate;
     private double yCoordinate;
 
-    public BounceSim(double paneWidth, double paneHeight, double entityWidth, double entityHeight, double decayRate) {
+    public BounceSim(double paneWidth, double paneHeight, double entityWidth, double entityHeight, double decayRate, double xStart, double yStart) {
         this.paneWidth = paneWidth;
         this.paneHeight = paneHeight;
 
@@ -30,8 +30,8 @@ public class BounceSim {
 
         this.decayRate = decayRate;
 
-        this.xCoordinate = Math.floor(paneWidth / 2);
-        this.yCoordinate = Math.floor(paneHeight / 2);
+        this.xCoordinate = xStart;
+        this.yCoordinate = yStart;
     }
 
     public void bump(HorizontalVelocity horizontalVelocity, VerticalVelocity verticalVelocity) {

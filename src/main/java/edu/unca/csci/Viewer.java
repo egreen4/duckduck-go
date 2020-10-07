@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -105,7 +106,7 @@ public class Viewer {
 		public void rpaint() {
 			
 			repaint();
-			
+			Toolkit.getDefaultToolkit().sync();
 		}
 
 
