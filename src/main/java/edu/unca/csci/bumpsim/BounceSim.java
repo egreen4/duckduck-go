@@ -7,6 +7,9 @@ public class BounceSim {
     private final double entityWidth;
     private final double entityHeight;
 
+    private final double entityWidthHalf;
+    private final double entityHeightHalf;
+
     private final double decayRate;
 
     private double horizontalSpeed;
@@ -21,6 +24,9 @@ public class BounceSim {
 
         this.entityHeight = entityHeight;
         this.entityWidth = entityWidth;
+
+        this.entityHeightHalf = Math.floor(entityHeight / 2);
+        this.entityWidthHalf = Math.floor(entityWidth / 2);
 
         this.decayRate = decayRate;
 
@@ -40,14 +46,34 @@ public class BounceSim {
         xCoordinate += horizontalSpeed;
         yCoordinate += verticalSpeed;
 
+        // Check if we're outside of the floor bounds.
+        if (yCoordinate >= paneHeight - entityHeight) {
+            yCoordinate = paneHeight - entityHeight;
+        }
+
+        // Check if we're outside of the ceiling bounds.
+        else if (yCoordinate <= entityHeightHalf) {
+            yCoordinate = entityHeightHalf;
+        }
+
+        // Check if we're outside of the left wall.
+        if (xCoordinate < 0) {
+            xCoordinate = 0;
+        }
+
+        // Check if we're outside of the right wall.
+        else if (xCoordinate >= paneWidth - entityWidthHalf) {
+            yCoordinate = paneWidth - entityWidthHalf;
+        }
+
         var collision = checkCollision();
 
         // If there was a collision with the floor or ceiling.
         if (collision == CollisionType.Floor) {
-            if (verticalSpeed <= 2) {
+            if (Math.abs(verticalSpeed) <= .5) {
                 verticalSpeed = 0;
                 horizontalSpeed += .3 * (horizontalSpeed < 0 ? 1 : -1);
-                yCoordinate = paneHeight - entityHeight;
+                yCoordinate = paneHeight - entityHeightHalf;
             }
 
             verticalSpeed = -verticalSpeed;
@@ -56,12 +82,6 @@ public class BounceSim {
         // If there was a collision with either wall.
         else if (collision == CollisionType.Wall) {
             horizontalSpeed = -horizontalSpeed;
-        }
-
-        // If the vertical velocity is very close to 0, set it to 0.
-        if (Math.abs(verticalSpeed) <= 1) {
-            verticalSpeed = 0;
-            // horizontalSpeed += (horizontalSpeed < 0 ? 1 : -1);
         }
 
         return new Position(xCoordinate, yCoordinate);

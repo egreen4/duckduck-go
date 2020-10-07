@@ -2,6 +2,8 @@ package edu.unca.csci;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
+
 import javax.swing.*;
 
 import edu.unca.csci.bumpsim.BounceSim;
@@ -61,7 +63,11 @@ public class Model
 	 * Starts Animation
 	 */
 	public void start() {
-		bounceSim.bump(new HorizontalVelocity(HorizontalDirection.Right, 1), new VerticalVelocity(VerticalDirection.Up, 1));
+		var random = new Random();
+		var horizontalVelocity = new HorizontalVelocity(random.nextInt(1) == 1 ? HorizontalDirection.Right : HorizontalDirection.Left, random.nextInt(50));
+		var verticalVelocity = new VerticalVelocity(random.nextInt(1) == 1 ? VerticalDirection.Up : VerticalDirection.Down, random.nextInt(50));
+		
+		bounceSim.bump(horizontalVelocity, verticalVelocity);
 		timer.start();
 	}
 	
