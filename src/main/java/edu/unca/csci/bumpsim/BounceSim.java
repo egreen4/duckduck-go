@@ -44,6 +44,12 @@ public class BounceSim {
 
         // If there was a collision with the floor or ceiling.
         if (collision == CollisionType.Floor) {
+            if (verticalSpeed <= 2) {
+                verticalSpeed = 0;
+                horizontalSpeed += .3 * (horizontalSpeed < 0 ? 1 : -1);
+                yCoordinate = paneHeight - entityHeight;
+            }
+
             verticalSpeed = -verticalSpeed;
         }
 
@@ -55,11 +61,7 @@ public class BounceSim {
         // If the vertical velocity is very close to 0, set it to 0.
         if (Math.abs(verticalSpeed) <= 1) {
             verticalSpeed = 0;
-        }
-
-        // If the vertical speed is 0, reduce the horizontal speed ("friction").
-        if (verticalSpeed == 0) {
-            horizontalSpeed += (1 * (horizontalSpeed < 0 ? -1 : 1));
+            // horizontalSpeed += (horizontalSpeed < 0 ? 1 : -1);
         }
 
         return new Position(xCoordinate, yCoordinate);
