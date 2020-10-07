@@ -3,20 +3,31 @@ package ddg;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Detects input from button press which either starts or stops
+ * movement animation.
+ *
+ */
 public class Controller implements ActionListener {
 
 	private int state = -1;
 	private Model m;
-	private Viewer v;
 	
-	
-	public Controller(Model m, Viewer v) {
+	/**
+	 * Constructor for Controller Class
+	 * @param m Takes an element of the Type Model
+	 */
+	public Controller(Model m) {
 		
 		this.m = m;
-		this.v = v;
 		
 	}
 	
+	/**
+	 * Detects actions from viewer class, starts or stops
+	 * code that moves Image
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		//String input = (String) e.getActionCommand();
@@ -25,13 +36,13 @@ public class Controller implements ActionListener {
 		if(state == -1) {
 		
 			state *= -1;
-			v.canvas.start();
+			m.start();
 		
 		}
 		else if(state == 1) {
 			
 			state *= -1;
-			v.canvas.stop();
+			m.stop();
 			
 		}
 		
